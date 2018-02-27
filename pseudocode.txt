@@ -1,0 +1,15 @@
+3 game states (each of these will be true/false booleans to check on clicks): start (no char selected), no defender (need to select someone from enemies to attack), and attacking (enemy in defender area). when onclick events happen, should check the gamestate to see which mode we are in and the action should be taken by the game accordingly
+- start state has 4 characters up top for selection with headers for each other section that have nothign in them. When you choose someone, set them as 'choosenCharacter' variable and then set gamestate to no defender state.
+- no defender state has my guy (choosenCharacter) under 'your character' header, and everyone else under 'enemies to attack' when enemy is clicked, set them as 'defender' variable and then move to attacking game state.
+- attacking state should have choosen character under 'defender', and the attack button should only work in this state. all characters should not do anything when clicked. when attack is clicked, you should deal damage to the defender and your attack stat should be raised by a set amount, then it should check to see if they're dead. if they are, delete their div (or hide it) and update to the no defender state. if they're not, have them counterattack the 'choosenCharacter' by removing hp equal to their counterattack stat, then check to see if 'choosenCharacter' has hp of < 0. If so, say you lose and display reset button that changes gamestate back to start state. If all enemies die, give you win message and display reset button.
+
+each character is an object, with health points, attack power, counter attack power, and 'alive' as 4 of the items in the object
+
+have 4 divs, one for each character, that will be moved around during the game and have their styling/text update as the game progresses. these divs should display the character name, a photo of the character, and their hit points.
+
+html page should also have:
+- Your character header
+- enemies to attack header
+- fight selection header with attack button under it
+- defender header
+- background image and main header with game title
