@@ -1,31 +1,39 @@
 var characters = {
     "toph": {
+        "name": "toph",
         "hitpoints": 200,
         "attack": 10,
         "baseAttack": 10,
         "counterattack": 35,
         "alive": true,
+        "image": "assets/images/toph_4.png"
     },
     "zuko": {
+        "name": "zuko",
         "hitpoints": 150,
         "baseAttack": 15,
         "attack": 15,
         "counterattack": 50,
         "alive": true,
+        "image": "assets/images/zuko_4.png"
     },
     "katara": {
+        "name": "katara",
         "hitpoints": 180,
         "baseAttack": 12,
         "attack": 12,
         "counterattack": 25,
         "alive": true,
+        "image": "assets/images/katara_1.png"
     },
     "aang": {
+        "name": "aang",
         "hitpoints": 240,
         "baseAttack": 11,
         "attack": 11,
         "counterattack": 15,
         "alive": true,
+        "image": "assets/images/aang_4.png"
     }
 };
 
@@ -58,52 +66,23 @@ function resetButton() {
 }
 
 
-function gameReset() {
-    characters = {
-        "toph": {
-            "hitpoints": 200,
-            "attack": 10,
-            "baseAttack": 10,
-            "counterattack": 35,
-            "alive": true,
-        },
-        "zuko": {
-            "hitpoints": 150,
-            "baseAttack": 15,
-            "attack": 15,
-            "counterattack": 50,
-            "alive": true,
-        },
-        "katara": {
-            "hitpoints": 180,
-            "baseAttack": 8,
-            "attack": 8,
-            "counterattack": 25,
-            "alive": true,
-        },
-        "aang": {
-            "hitpoints": 240,
-            "baseAttack": 8,
-            "attack": 8,
-            "counterattack": 15,
-            "alive": true,
-        }
-    };
-    
-    startGameState = true;
-    noDefenderGameState = false;
-    attackingGameState = false;
-    endGameState = false;
-    choosenCharacter = "";
-    defender = "";
-    $("<h1>").append($(".character"));
-    $(".toph-HP").text("200");
-    $(".zuko-HP").text("150");
-    $(".katara-HP").text("180");
-    $(".aang-HP").text("240");
-    $(":hidden").toggle();
-    $(".resetButton").remove();
+function gameStart() {
+
+    for (var key in characters) {
+        var specificCharacter = characters[key]; 
+        var characterDiv = $("<div>");
+        characterDiv.attr("id", specificCharacter.name);
+        characterDiv.toggleClass("character");
+        characterDiv.attr("data-name", specificCharacter.name);
+        characterDiv.attr("data-choosen", "false");
+        characterDiv.html("<h4>" + specificCharacter.name +"</h4> <img height='200px' src='" + specificCharacter.image + "'> <p>" + specificCharacter.hitpoints + "</p>");
+        $("#start").append(characterDiv);
+   };
+    $("#gameMessage").text("Click on a Character to begin!");
+    $("#resetButton").hide()
 };
+
+gameStart();
 
 $(".character").on("click", function() {
     if (noDefenderGameState && $(this).attr("data-choosen") === "false") {
@@ -146,22 +125,20 @@ $("#attackButton").on("click", function() {
             $("#gameMessage").text("You have been defeated. Game Over. Press the reset button to play again.");
             attackingGameState = false;
             endGameState = true;
-            resetButton();
+            $("#resetButton").show();
         }
         if (characters.toph.alive === false && characters.zuko.alive === false && characters.katara.alive === false && characters.aang.alive === false){
             $("#gameMessage").text("You won! Press the reset button to play again.");
             noDefenderGameState = false;
             attackingGameState = false;
             endGameState = true;
-            resetButton();
+            $("#resetButton").show();
         }
     };
 });
 
-$(".resetButton").on("click", function() {
-    gameReset();
+$("#resetButton").on("click", function() {
+    location.reload();
 });
 
-// Only thing I need to finish this is to get the reset button to work. I believe what I'd need to do to fix this is change it so that clicking the reset button (and running the corresponding function) re-creates the the 4 character divs using a loop that runs through the characters object and creates a div for each character. I would need to update each character in the characters object with their corresponding image sources to get this to work. 
-
-// Once I have done this, I would be able to remove the html that's currently in the index.html document for those 4 divs, and just run the 'gameReset' function upon page load.
+// game doesn't work after reset button is pressed. Not sure why.

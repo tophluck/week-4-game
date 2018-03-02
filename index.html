@@ -10,26 +10,7 @@
 </head>
 <body>
     <h1>Avatar Bending Game</h1>
-    <div id="toph" class="character" data-name="toph" data-choosen="false">
-        <h4>Toph</h4>
-        <img id="tophImage" height="200px" src="assets/images/toph_4.png">
-        <p id="toph-HP HP">200</p>
-    </div>
-    <div id="zuko" class="character" data-name="zuko" data-choosen="false">
-        <h4>Zuko</h4>
-        <img id="zukoImage" height="200px" src="assets/images/zuko_4.png">
-        <p id="zuko-HP HP">150</p>
-    </div>
-    <div id="katara" class="character" data-name="katara" data-choosen="false">
-        <h4>Katara</h4>
-        <img id="kataraImage" height="200px" src="assets/images/katara_1.png">
-        <p id="katara-HP HP">180</p>
-    </div>
-    <div id="aang" class="character" data-name="aang" data-choosen="false">
-        <h4>Aang</h4>
-        <img id="aangImage" height="200px" src="assets/images/aang_4.png">
-        <p id="aang-HP HP">240</p>
-    </div>
+    <div id="start"></div>
     <h2>Your Character</h2>
     <div id="yourCharacter"></div>
     <h2>Enemies to Attack</h2>
@@ -38,7 +19,8 @@
     <button id="attackButton">Attack</button>
     <h2>Defender</h2>
     <div id="defender"></div>
-    <div id="gameMessage">Click on a Character to begin!</div>
+    <div id="gameMessage"></div>
+    <button id="resetButton">Reset</button>
 
     <!-- javascript links -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
